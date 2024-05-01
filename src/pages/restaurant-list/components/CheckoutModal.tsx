@@ -21,7 +21,10 @@ const style = {
 const CheckoutModal = ({
     open,
     onClose,
+    checkoutProducts
 }) => {
+
+    console.log('recebido', checkoutProducts)
 
     return (
         <Modal
@@ -35,6 +38,18 @@ const CheckoutModal = ({
                 <p id="child-modal-description">
                    
                 </p>
+
+                <div>
+                    {checkoutProducts.map((product, index) => (
+                        <div key={index}>
+                            <p>{product.item.name}</p>
+                            <p>Quantidade {product.quantity}</p>
+                            <p>R$ {product.item.price}</p>
+                        </div>
+                    ))}
+                </div>
+
+
                 <Button onClick={onClose}>
                     Confirmar
                 </Button>

@@ -63,8 +63,19 @@ export default function NestedList() {
         setModalProductOpen(!modalProductOpen)
     }
 
+    const [checkoutProducts, setCheckoutProducts] = React.useState([])
+
     const handleCloseModalProduct = () => {
         console.log(quantitySelected, itemSelected)
+
+        const newCheckoutProduct = {
+            quantity: quantitySelected,
+            item: itemSelected
+        }
+        setCheckoutProducts([...checkoutProducts, newCheckoutProduct])
+
+        console.log(checkoutProducts)
+
         setItemsQuantity(itemsQuantity+1)
 
         setQuantitySelected(0)
@@ -106,6 +117,7 @@ export default function NestedList() {
             <CheckoutModal
                 open={modalCheckoutOpen}
                 onClose={handleCloseModalCheckout}
+                checkoutProducts={checkoutProducts}
             />
 
             <List

@@ -19,8 +19,7 @@ const style = {
     pb: 3,
 }
 
-
-const ProductModel = ({
+const ProductModal = ({
     open,
     onClose,
     product,
@@ -52,4 +51,4 @@ const ProductModel = ({
     )
 }
 
-export default ProductModel
+export default ProductModal

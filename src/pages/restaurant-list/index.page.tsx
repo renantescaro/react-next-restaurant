@@ -10,7 +10,10 @@ import Collapse from '@mui/material/Collapse'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
-import ProductModel from './components/ProductModel'
+import Fab from '@mui/material/Fab';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import ProductModal from './components/ProductModal'
+import CheckoutModal from './components/CheckoutModal'
 
 export default function NestedList() {
     const companies = [
@@ -49,6 +52,7 @@ export default function NestedList() {
         setItemsOpened(newItemsOpened)
     }
 
+    // select item
     const [itemSelected, setItemSelected] = React.useState({})
 
     const [modalProductOpen, setModalProductOpen] = React.useState(false)
@@ -61,12 +65,15 @@ export default function NestedList() {
 
     const handleCloseModalProduct = () => {
         console.log(quantitySelected, itemSelected)
+        setItemsQuantity(itemsQuantity+1)
+
         setQuantitySelected(0)
         setItemSelected({})
         setModalProductOpen(!modalProductOpen)
         setTotalPrice(0)
     }
 
+    const [itemsQuantity, setItemsQuantity] = React.useState(0)
     const [quantitySelected, setQuantitySelected] = React.useState(0)
 
     const [totalPrice, setTotalPrice] = React.useState(0)
@@ -75,14 +82,30 @@ export default function NestedList() {
         setTotalPrice(itemSelected.price *  quantity)
     }
 
+    // checkout
+    const [modalCheckoutOpen, setModalCheckoutOpen] = React.useState(false)
+
+    const handleOpenModalCheckout = () => {
+        setModalCheckoutOpen(!modalCheckoutOpen)
+    }
+
+    const handleCloseModalCheckout = () => {
+        setModalCheckoutOpen(!modalCheckoutOpen)
+    }
+
     return (
         <div>
-            <ProductModel
+            <ProductModal
                 open={modalProductOpen}
                 onClose={handleCloseModalProduct}
                 product={itemSelected}
                 totalPrice={totalPrice}
                 quantityOnChange={handleQuantityChange}
+            />
+
+            <CheckoutModal
+                open={modalCheckoutOpen}
+                onClose={handleCloseModalCheckout}
             />
 
             <List
@@ -142,6 +165,15 @@ export default function NestedList() {
                     </div>
                 ))}
             </List>
+            <div style={{ position: 'fixed', bottom: '20px', right: '20px' }}>
+                <Fab
+                    variant="extended"
+                    onClick={handleOpenModalCheckout}
+                >
+                    <ShoppingCartIcon sx={{ mr: 1 }} />
+                    Carrinho {itemsQuantity}
+                </Fab>
+            </div>
         </div>
     )
 }

@@ -4,6 +4,9 @@ import styles from "@/styles/Home.module.css";
 import NestedList from "@/pages/restaurant-list/index.page";
 
 const inter = Inter({ subsets: ["latin"] });
+const style = {
+  backgroundColor: '#121111',
+}
 
 export default function Home() {
   return (
@@ -15,7 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
+        <div style={{...style}} className={styles.description}>
           <NestedList />
         </div>
       </main>

@@ -13,7 +13,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
+    bgcolor: '#181818',
     border: '2px solid #000',
     boxShadow: 24,
     pt: 2,
@@ -41,11 +41,11 @@ const CheckoutModal = ({
                     Carrinho
                 </p>
                 <List
-                    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                    sx={{ width: '100%', maxWidth: 360, bgcolor: '#181818' }}
                     component="nav"
                     aria-labelledby="nested-list-subheader"
                     subheader={
-                        <ListSubheader component="div" id="nested-list-subheader">
+                        <ListSubheader style={{backgroundColor:'#181818', color:'#fff'}} component="div" id="nested-list-subheader">
                             Itens adicionados
                         </ListSubheader>
                     }

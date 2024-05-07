@@ -15,6 +15,13 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import ProductModal from './components/ProductModal'
 import CheckoutModal from './components/CheckoutModal'
 
+const styleFloatingButton = {
+    bgcolor: 'red',
+    position: 'fixed',
+    bottom: '20px',
+    right: '20px'
+}
+
 export default function NestedList() {
     const companies = [
         {
@@ -122,13 +129,14 @@ export default function NestedList() {
 
             <List
                 sx={{ width: '100%',
-                    bgcolor: 'background.paper'
+                    bgcolor: '#121111',
                 }}
                 component="nav"
                 aria-labelledby="nested-list-subheader"
                 subheader={
                     <ListSubheader
                         component="div"
+                        style={{backgroundColor:'#121111', color:'#fff', textAlign:'center'}}
                         id="nested-list-subheader"
                     >
                         Restaurantes
@@ -140,7 +148,7 @@ export default function NestedList() {
                         <ListItemButton onClick={
                             () => handleClickCompany(index)
                         }>
-                            <ListItemIcon>
+                            <ListItemIcon style={{color:'#fff'}}>
                                 <InboxIcon />
                             </ListItemIcon>
                             <ListItemText primary={company.name} />
@@ -158,12 +166,15 @@ export default function NestedList() {
                                         key={itemIndex} sx={{ pl: 4 }}
                                     >
                                         <ListItemText
+                                            style={{color:'#fff'}}
+                                            secondaryTypographyProps={{style:{color:'#fff'}}}
                                             primary={item.name}
                                             secondary={`R$ ${item.price}`}
                                         />
                                         <IconButton
                                             aria-label="delete"
                                             size="small"
+                                            style={{color:'#fff'}}
                                             onClick={
                                                 () => handleOpenModalProduct(item)
                                             }
@@ -177,7 +188,7 @@ export default function NestedList() {
                     </div>
                 ))}
             </List>
-            <div style={{ position: 'fixed', bottom: '20px', right: '20px' }}>
+            <div style={{...styleFloatingButton }}>
                 <Fab
                     variant="extended"
                     onClick={handleOpenModalCheckout}
